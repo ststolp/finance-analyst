@@ -1,0 +1,19 @@
+{
+  "name": "finance-analyst",
+  "version": "1.0.0",
+  "description": "Dependencies:\r   express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ststolp/finance-analyst.git"
+  },
+  "author": "Steven Stolp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ststolp/finance-analyst/issues"
+  },
+  "homepage": "https://github.com/ststolp/finance-analyst#readme"
+}
