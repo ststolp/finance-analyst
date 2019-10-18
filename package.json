@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/ststolp/finance-analyst/issues"
   },
-  "homepage": "https://github.com/ststolp/finance-analyst#readme"
+  "homepage": "https://github.com/ststolp/finance-analyst#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "plotly": "^1.0.6",
+    "python-shell": "^1.0.8"
+  },
+  "engines": {
+    "node": "10.15.1"
+  }
 }
