@@ -6,4 +6,5 @@ Dependencies:
 Modules: 
   python-shell,
   plotly
+  express
   
