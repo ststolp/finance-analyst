@@ -2,6 +2,7 @@
 const http = require('http');
 const express = require('express');
 const controller = require("./backend/controllers/controller.js");
+const jsReport = require("./frontend/js/report.js");
 // const pythonService = require("./backend/services/python.service");
 const session = require('express-session');
 let port = 5000;
@@ -32,6 +33,7 @@ app.get("/", controller.home);
 app.get("/getReport", controller.report);
 app.get("/getTxnUI", controller.txnUI);
 app.get("/runScript", controller.runScript);
+app.get("/js/report.js", jsReport.plotReport);
 
 
 app.listen(app.get('port'), function(){

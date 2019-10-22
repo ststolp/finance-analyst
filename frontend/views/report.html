@@ -1,1 +1,40 @@
 <!-- This file will be used to display the report or analysis from the graph created on the backend-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<script type="text/javascript" src="/js/report.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        window.onload = function() {
+        let element = document.getElementById('myDiv');
+        let income = {
+        x: [2015, 2016, 2017, 2018],
+        y: [20000, 10000, 500, 300],
+        type: 'scatter'
+        };
+
+        let home = {
+            x: [2015, 2016, 2017, 2018],
+            y: [200, 100, 500, 1000],
+            type: 'scatter'
+        };
+
+        let auto = {
+            x: [2015, 2016, 2017, 2018],
+            y: [600, 500, 450, 800],
+            type: 'scatter'
+        };
+
+     let data = [income, home, auto];
+     Plotly.plot("myDiv", data);
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Report</title>
+</head>
+<body>
+    <div id="myDiv" style="width:600px;height:250px;">
+</body>
+</html>
