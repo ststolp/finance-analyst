@@ -33,7 +33,7 @@ app.get("/", controller.home);
 app.get("/getReport", controller.report);
 app.get("/getTxnUI", controller.txnUI);
 app.get("/runScript", controller.runScript);
-app.get("/js/report.js", jsReport.plotReport);
+//app.get("/js/report.js", jsReport.plotReport);
 
 
 app.listen(app.get('port'), function(){
