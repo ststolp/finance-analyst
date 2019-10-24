@@ -5,29 +5,54 @@
     <!--<script type="text/javascript" src="/js/report.js"></script> -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
-        window.onload = function() {
-        let element = document.getElementById('myDiv');
-        let income = {
-        x: [2015, 2016, 2017, 2018],
-        y: [20000, 10000, 500, 300],
-        type: 'scatter'
-        };
+        // window.onload = function() {
+        //     let element = document.getElementById('myDiv');
+        //     let income = {
+        //        x: [2015, 2016, 2017, 2018],
+        //        y: [20000, 10000, 500, 300],
+        //        type: 'scatter'
+        //     };
 
-        let home = {
-            x: [2015, 2016, 2017, 2018],
-            y: [200, 100, 500, 1000],
-            type: 'scatter'
-        };
+        //     let home = {
+        //         x: [2015, 2016, 2017, 2018],
+        //         y: [200, 100, 500, 1000],
+        //         type: 'scatter'
+        //     };
 
-        let auto = {
-            x: [2015, 2016, 2017, 2018],
-            y: [600, 500, 450, 800],
-            type: 'scatter'
-        };
+        //     let auto = {
+        //         x: [2015, 2016, 2017, 2018],
+        //         y: [600, 500, 450, 800],
+        //         type: 'scatter'
+        //     };
 
-     let data = [income, home, auto];
-     Plotly.plot("myDiv", data);
-    }
+        //     let data = [income, home, auto];
+        //     Plotly.plot("myDiv", data);
+        // }
+        function getReport() {
+            const target = '/getReport';
+            let request = new XMLHttpRequest();
+            request.open("GET", target);
+            request.send();
+            console.log("sending request...");
+            let reportElement = document.getElementById('myDiv');
+            request.onreadystatechange = function() {
+                if(request.readyState == 4) {
+                    if(request.status == 200) {
+                        let lines = JSON.parse(request.responseText);
+                       // alert(`Type of response: ${typeof(request.responseText)}`);
+                       // alert(typeof(lines));
+                        console.log(lines);
+                        //alert(lines);
+                        let data = [lines.income, lines.home, lines.auto];
+                        //alert(lines.income);
+
+                        Plotly.plot("myDiv", data);
+                    }else{
+                        reportElement.innerHTML = "error";
+                    }
+                }
+            }
+        }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +60,7 @@
     <title>Report</title>
 </head>
 <body>
-    <div id="myDiv" style="width:600px;height:250px;">
+    <button onclick='getReport()'>Show Report</button>
+    <div id="myDiv" style="width:600px;height:250px;"></div>
 </body>
 </html>

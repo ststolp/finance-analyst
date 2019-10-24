@@ -1,1 +1,37 @@
-<!-- This page will be the user interface used to add income or purchase transactions -->
+<!-- This file will be used to display the report or analysis from the graph created on the backend-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<script type="text/javascript" src="/js/report.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        function getTxns() {
+            const target = '/getTxns';
+            let request = new XMLHttpRequest();
+            request.open("GET", target);
+            request.send();
+            console.log("sending request...");
+            let txnElement = document.getElementById('myDiv');
+            request.onreadystatechange = function() {
+                if(request.readyState == 4) {
+                    if(request.status == 200) {
+                        let lines = JSON.parse(request.responseText);
+                        txnElement.innerHTML = request.responseText;
+                        //Plotly.plot("myDiv", data);
+                    }else{
+                        txnElement.innerHTML = "error";
+                    }
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transactions</title>
+</head>
+<body>
+    <button onclick='getTxns()'>Show Transactions</button>
+    <div id="myDiv" style="width:600px;height:250px;"></div>
+</body>
+</html>

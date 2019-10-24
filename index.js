@@ -30,9 +30,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get("/", controller.home);
-app.get("/getReport", controller.report);
 app.get("/getTxnUI", controller.txnUI);
-app.get("/runScript", controller.runScript);
+app.get("/getReport", controller.getReport);
+app.get("/getTxns", controller.getTxns);
 //app.get("/js/report.js", jsReport.plotReport);
 
 
