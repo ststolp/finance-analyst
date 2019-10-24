@@ -1,9 +1,9 @@
 /* Beginning of index file */
 const http = require('http');
 const express = require('express');
-const controller = require("./backend/controllers/controller.js");
+const viewsController = require("./backend/controllers/viewsController.js");
+const dataController = require("./backend/controllers/dataController.js");
 const jsReport = require("./frontend/js/report.js");
-// const pythonService = require("./backend/services/python.service");
 const session = require('express-session');
 let port = 5000;
 // const bodyParser = require('body-parser');
@@ -14,8 +14,6 @@ const app = express();
 
 // const connectionString = process.env.DATABASE_URL;
 // const pool = Pool({connectionString: connectionString});
-
-// pythonService.run("hello", "what", "Yes");
 
 app.use(session({
   name: 'server-session-cookie-id',
@@ -29,13 +27,19 @@ app.use(express.static("frontend/views"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get("/", controller.home);
-app.get("/getTxnUI", controller.txnUI);
-app.get("/getReport", controller.getReport);
-app.get("/getTxns", controller.getTxns);
+app.get("/", viewsController.home);
+app.get("/expense_form", viewsController.expenseForm);
+app.get("/income_form", viewsController.incomeForm);
+app.get("/report_page", viewsController.reportPage);
+
+app.get("/getExpenses", dataController.getExpenses);
+app.get("/getIncomes", dataController.getIncomes);
+app.get("/getReport", dataController.getReport);
+
+app.put("/addIncome", dataController.addIncome);
+app.put("/addExpense", dataController.addExpense);
 //app.get("/js/report.js", jsReport.plotReport);
 
-
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'), function() {
 	console.log(`  Finance-Analyst running on port: ${port}`);
 });
