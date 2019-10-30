@@ -3,10 +3,13 @@
 <html lang="en">
 <head>
     <!--<script type="text/javascript" src="/js/report.js"></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
-        function getTxns() {
-            const target = '/getTxns';
+        function getExpenses() {
+            const target = '/getExpenses';
             let request = new XMLHttpRequest();
             request.open("GET", target);
             request.send();
@@ -25,14 +28,27 @@
             }
         }
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Expense Form</title>
 </head>
 <body>
     <p>Expense Form</p>
-    <button onclick='getTxns()'>Show Transactions</button>
+    <form action='/addExpense' method='post'>
+        <label>Date</label>
+        <input type='date' name='date'>
+        <label>Payment To</label>
+        <input type='text' name='payment_to'>
+        <label>Method</label>
+        <input type='text' name='method'>
+        <label>Category</label>
+        <input type='text' name='category'>
+        <label>Description</label>
+        <input type='text' name='description'>
+        <label>Amount</label>
+        <!-- type number only allows integers -->
+        <input type='text' name='amount'>
+        <input type='submit' value='Add Expense'>
+    </form>
+    <button onclick='getExpenses()'>Show Expenses</button>
     <div id="myDiv" style="width:600px;height:250px;"></div>
 </body>
 </html>

@@ -27,17 +27,19 @@ app.use(express.static("frontend/views"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+/* html page requests  */
 app.get("/", viewsController.home);
 app.get("/expense_form", viewsController.expenseForm);
 app.get("/income_form", viewsController.incomeForm);
 app.get("/report_page", viewsController.reportPage);
 
+/*  AJAX request endpoints  */
 app.get("/getExpenses", dataController.getExpenses);
 app.get("/getIncomes", dataController.getIncomes);
 app.get("/getReport", dataController.getReport);
 
-app.put("/addIncome", dataController.addIncome);
-app.put("/addExpense", dataController.addExpense);
+app.post("/addIncome", dataController.addIncome);
+app.post("/addExpense", dataController.addExpense);
 //app.get("/js/report.js", jsReport.plotReport);
 
 app.listen(app.get('port'), function() {

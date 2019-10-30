@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Income From</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        function getIncomes() {
+            const target = '/getIncomes';
+            let request = new XMLHttpRequest();
+            request.open("GET", target);
+            request.send();
+            console.log("sending request...");
+            let txnElement = document.getElementById('myDiv');
+            request.onreadystatechange = function() {
+                if(request.readyState == 4) {
+                    if(request.status == 200) {
+                        let lines = JSON.parse(request.responseText);
+                        txnElement.innerHTML = request.responseText;
+                        //Plotly.plot("myDiv", data);
+                    }else{
+                        txnElement.innerHTML = "error";
+                    }
+                }
+            }
+        }
+    </script>
+    <title>Income Form</title>
 </head>
 <body>
     <p>Income Form</p>
+    <form action='/addIncome' method='post'>
+       <label>Date</label>
+       <input type='date' name='date'>
+       <label>From</label>
+       <input type='text' name='from'>
+       <label>Type</label>
+       <input type='text' placeholder="salary, bonus,..." name="type">
+       <label>Amount</label>
+       <input type='text' name='amount'>
+       <input type='submit' name='Add Income'>
+    </form>
+    <button onclick='getIncomes()'>Show Incomes</button>
+    <div id="myDiv" style="width:600px;height:250px;"></div>
 </body>
 </html>

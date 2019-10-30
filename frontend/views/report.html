@@ -29,23 +29,33 @@
         //     Plotly.plot("myDiv", data);
         // }
         function getReport() {
-            const target = '/getReport';
+            const startDate = document.getElementById('start').value;
+            const endDate = document.getElementById('end').value;
+            const endpoint = '/getReport';
+            const params = `?startDate='${startDate}'&endDate='${endDate}'`;
             let request = new XMLHttpRequest();
-            request.open("GET", target);
+            const target = endpoint + params;
+            request.open("GET", target);    
             request.send();
             console.log("sending request...");
             let reportElement = document.getElementById('myDiv');
             request.onreadystatechange = function() {
                 if(request.readyState == 4) {
                     if(request.status == 200) {
-                        let lines = JSON.parse(request.responseText);
+                        let oldString = request.responseText;
+                        let string = oldString.replace(/\\/g, '');
+                        alert(`string: ${string}`);
+                        let results = string.substring(2, string.length - 2);
+                        alert(`request text: ${results}`);
+                        console.log(results);
+                        let lines = JSON.parse(results);
                        // alert(`Type of response: ${typeof(request.responseText)}`);
                        // alert(typeof(lines));
                         console.log(lines);
                         //alert(lines);
                         let data = [lines.income, lines.home, lines.auto];
-                        //alert(lines.income);
-
+                        alert(lines.income)
+                        alert(data);
                         Plotly.plot("myDiv", data);
                     }else{
                         reportElement.innerHTML = "error";
@@ -61,7 +71,12 @@
 </head>
 <body>
     <p>Report</p>
-    <button onclick='getReport()'>Show Report</button>
+    <!--<button onclick='getReport()'>Show Report</button> -->
     <div id="myDiv" style="width:600px;height:250px;"></div>
+       <label>Start Date</label>
+       <input type='date' name='start' value='2019-06-01' id='start'>
+       <label>End Date</label>
+       <input type='date' name='end' value='2019-06-30' id='end'>
+       <button type='button' value='Get Report' onclick='getReport()'>Get Report</button>
 </body>
 </html>
