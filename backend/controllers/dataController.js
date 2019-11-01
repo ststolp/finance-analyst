@@ -2,10 +2,11 @@ const pythonService = require("../services/python.service");
 const jsonService = require("../services/json.service");
 
 function getReport(req, res) {
-    let startDate = req.query.startDate;
-    let endDate = req.query.endDate;
-    console.log(startDate + ', ' + endDate);
-    pythonService.get_report(startDate, endDate).then(function(results) {
+    let start = Date(req.query.startDate);
+    let end = Date(req.query.endDate);
+    const now = new Date();
+    console.log(`${start}, ${end}, ${now}`);
+    pythonService.get_report(start.valueOf(), end.valueOf(), now.valueOf()).then(function(results) {
         console.log(`Service: ${results}`);
         res.status(200).json(results);
     });

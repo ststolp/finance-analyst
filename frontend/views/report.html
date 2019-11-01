@@ -44,9 +44,14 @@
                     if(request.status == 200) {
                         let oldString = request.responseText;
                         let string = oldString.replace(/\\/g, '');
-                        alert(`string: ${string}`);
-                        let results = string.substring(2, string.length - 2);
-                        alert(`request text: ${results}`);
+                        let stringB = string.replace(/\"\[/g, '[');
+                        let stringC = stringB.replace(/\]\"/g, ']');
+                        //alert(`StringC: ${stringC}`)
+                        let stringE = stringC.replace(/\",\[/g, '[');
+                        let stringD = stringE.replace(/\],\"/g, ']');
+                        //alert(`stringD: ${stringD}`);
+                        let results = stringD.substring(2, stringD.length - 2);
+                      //  alert(`request text: ${results}`);
                         console.log(results);
                         let lines = JSON.parse(results);
                        // alert(`Type of response: ${typeof(request.responseText)}`);
@@ -54,8 +59,8 @@
                         console.log(lines);
                         //alert(lines);
                         let data = [lines.income, lines.home, lines.auto];
-                        alert(lines.income)
-                        alert(data);
+                     //   alert(lines.income)
+                       // alert(data);
                         Plotly.plot("myDiv", data);
                     }else{
                         reportElement.innerHTML = "error";
