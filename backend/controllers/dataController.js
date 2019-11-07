@@ -2,11 +2,14 @@ const pythonService = require("../services/python.service");
 const jsonService = require("../services/json.service");
 
 function getReport(req, res) {
-    let start = Date(req.query.startDate);
-    let end = Date(req.query.endDate);
+    let start = new Date(req.query.startDate);
+    let end = new Date(req.query.endDate);
     const now = new Date();
-    console.log(`${start}, ${end}, ${now}`);
-    pythonService.get_report(start.valueOf(), end.valueOf(), now.valueOf()).then(function(results) {
+    startFormated = `${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate() + 1}`;
+    endFormated = `${end.getFullYear()}-${end.getMonth() + 1}-${end.getDate() + 1}`;
+    nowFormated = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + 1}`;
+    console.log(`${startFormated}, ${endFormated}, ${nowFormated}`);
+    pythonService.get_report(startFormated, endFormated, nowFormated).then(function(results) {
         console.log(`Service: ${results}`);
         res.status(200).json(results);
     });
@@ -25,20 +28,18 @@ function getIncomes(req, res) {
 };
 
 function addExpense(req, res) {
-    //TODO
-    //   I might not be able to use jsonService like this
-    let date = Date.parse(req.body.date);
-    let entry = `\n${date},${req.body.payment_to},${req.body.method},${req.body.category},${req.body.description},${req.body.amount}`;
-    console.log(`${req.body.date}, ${req.body.payment_to}, ${req.body.method}, ${req.body.description}, ${req.body.amount}`);
+    let date = new Date(req.body.date);
+    let dateFormated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+    let entry = `\n${dateFormated},${req.body.payment_to},${req.body.method},${req.body.category},${req.body.description},${req.body.amount}`;
     jsonService.add_expense(entry).then(function(response) {
         res.redirect(200, '/expense_form');
     });
 };
 
 function addIncome(req, res) {
-    //TODO
-    let date = Date.parse(req.body.date);
-    let entry = `\n${date},${req.body.from},${req.body.type},${req.body.amount}`;
+    let date = new Date(req.body.date);
+    let dateFormated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+    let entry = `\n${dateFormated},${req.body.from},${req.body.type},${req.body.amount}`;
     jsonService.add_income(entry).then(function(incomes) {
         res.redirect(200, '/income_form');
     });
