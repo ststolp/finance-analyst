@@ -38,9 +38,26 @@
         <label>Payment To</label>
         <input type='text' name='payment_to'>
         <label>Method</label>
-        <input type='text' name='method'>
+        <select name='method'>
+            <option value='cash'>Cash</option>
+            <option value='credit'>Credit</option>
+            <option value='debit'>Debit</option>
+            <option value='check'>Check</option>
+        </select>
         <label>Category</label>
-        <input type='text' name='category'>
+        <select name='category'>
+            <option value='home'>Home</option>
+            <option value='auto'>Auto</option>
+            <option value='food'>Food</option>
+            <option value='entertainment'>Entertainment</option>
+            <option value='miscellaneous'>Miscellaneous</option>
+            <option value="charity">Charity</option>
+            <option value="water">Water</option>
+            <option value="gas">Gas</option>
+            <option value="electric">Electric</option>
+            <option value="internet">Internet</option>
+            <option value='phone'>Phone</option>
+        </select>
         <label>Description</label>
         <input type='text' name='description'>
         <label>Amount</label>

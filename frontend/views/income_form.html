@@ -36,7 +36,13 @@
        <label>From</label>
        <input type='text' name='from'>
        <label>Type</label>
-       <input type='text' placeholder="salary, bonus,..." name="type">
+       <select name="type">
+           <option value='salary'>Salary</option>
+           <option value='bonus'>Bonus</option>
+           <option value='commision'>Commision</option>
+           <option value='child support'>Child Support</option>
+           <option value='Interest'>Interest</option>
+       </select>
        <label>Amount</label>
        <input type='text' name='amount'>
        <input type='submit' name='Add Income'>
