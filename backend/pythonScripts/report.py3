@@ -9,7 +9,7 @@ millisecondDay = 86400000
 # Spread x values every 15 days
 interval = millisecondDay * 15
 types = ['salary', 'bonus', 'commision', 'child support', 'interest']
-cats =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
+categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
 'electric', 'miscellaneous']
 methods = ['Cash', 'Credit', 'Debit', 'Check']
 # The number of records to fabricate
@@ -26,7 +26,7 @@ def generateColumn(column, num = 100):
 
 methodsColumn = generateColumn(methods, num_fake_records)
 typesColumn = generateColumn(types, num_fake_records)
-catsColumn = generateColumn(cats, num_fake_records)
+catsColumn = generateColumn(categories, num_fake_records)
 
 # Get the dataFrame for actual income and expense transactions
 expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.csv')
@@ -49,18 +49,18 @@ income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv'
 # now = 200
 #x = list(range(startDate, endDate, interval))
 
-incomeY = []
-homeY = []
-autoY = []
-foodY = []
-entertainmentY = []
-miscY = []
-charityY = []
-waterY = []
-gasY = []
-electricY = []
+total_income = []
+home = []
+auto = []
+food = []
+entertainment = []
+misc = []
+charity = []
+water = []
+gas = []
+electric = []
 internet = []
-phoneY = []
+phone = []
 # for testing purposes
 x = [2015, 2016, 2017, 2018]
 
@@ -97,19 +97,63 @@ expense_sums = expense_df['amount'].groupby(expense_df['category']).sum()
 # lets pretend we have the stuff, for testing purposes
 # return json object string
 
-incomeY = [5000, 6000, 9000, 8000]
-homeY = [800, 750, 1820, 930]
-autoY = [300, 300, 600, 300]
+total_income = [5000, 6000, 9000, 8000]
+home = [800, 750, 1820, 930]
+auto = [300, 300, 600, 300]
+food = [500, 400, 450, 515]
+entertainment = [100, 110, 120, 130]
+misc = [130, 120, 110, 100]
+charity = [150, 130, 100, 50]
+water = [20, 25, 26, 27]
+gas = [80, 85, 75, 70]
+electric = [10, 20, 25, 30]
+internet = [30, 25, 20, 10]
+phone = [45, 90, 45, 80]
 print('{"income": {"x": ')
 print(x)
 print(', "y": ')
-print(incomeY)
-print(', "type": "scatter", "name": "Income"}, "home": {"x": ')
+print(total_income)
+print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
 print(x)
 print(',"y": ')
-print(homeY)
+print(home)
 print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
 print(x)
 print(',"y": ')
-print(autoY)
-print(', "type": "scatter", "name": "Auto"}}')
+print(auto)
+print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
+print(x)
+print(',"y": ')
+print(food)
+print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
+print(x)
+print(',"y": ')
+print(entertainment)
+print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
+print(x)
+print(',"y": ')
+print(misc)
+print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
+print(x)
+print(',"y": ')
+print(charity)
+print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
+print(x)
+print(',"y": ')
+print(water)
+print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
+print(x)
+print(',"y": ')
+print(gas)
+print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
+print(x)
+print(',"y": ')
+print(electric)
+print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
+print(x)
+print(',"y": ')
+print(internet)
+print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
+print(x)
+print(',"y": ')
+print(', "type": "scatter", "name": "Phone"}}')
