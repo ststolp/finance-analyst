@@ -24,10 +24,14 @@ def generateColumn(column, num = 100):
         resultList.append(column[i])
     return resultList
 
+def generateDates(min_date, max_date):
+    dates = []
+    return dates
+
 methodsColumn = generateColumn(methods, num_fake_records)
 typesColumn = generateColumn(types, num_fake_records)
 catsColumn = generateColumn(categories, num_fake_records)
-
+datesColumn = generateDates(startDate, endDate)
 # Get the dataFrame for actual income and expense transactions
 expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.csv')
 income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv')
@@ -37,7 +41,7 @@ income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv'
 # generate fabricated dataframe
 
 # TODO: fabricate the Dates, don't bother with payment_to or description
-# expense_df_test = pd.DataFrame({'date': ?, 'method': methodsColumn, 'category': catsColumn,
+# expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
 #                                'amount': rng.integers(1, 500, size = num_fake_records)})
 
 # print(expense_df_test)
@@ -109,6 +113,7 @@ gas = [80, 85, 75, 70]
 electric = [10, 20, 25, 30]
 internet = [30, 25, 20, 10]
 phone = [45, 90, 45, 80]
+
 print('{"income": {"x": ')
 print(x)
 print(', "y": ')
