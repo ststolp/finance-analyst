@@ -5,10 +5,10 @@ from dateutil.parser import parse
 # startDate = sys.argv[1]
 # endDate = sys.argv[2]
 # now = sys.argv[3]
-millisecondDay = 86400000
+startDate = '2001-08-01'
+endDate = '2005-12-31'
+now = '2019-12-01'
 
-# Spread x values every 15 days
-interval = millisecondDay * 15
 types = ['salary', 'bonus', 'commision', 'child support', 'interest']
 categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
 'electric', 'miscellaneous']
@@ -26,13 +26,13 @@ def generateColumn(column, num = 100):
     return resultList
 
 def generateDates(min_date, max_date):
-    dates = []
+    dates = pd.date_range(min_date, max_date, periods = num_fake_records)
     return dates
 
 methodsColumn = generateColumn(methods, num_fake_records)
 typesColumn = generateColumn(types, num_fake_records)
 catsColumn = generateColumn(categories, num_fake_records)
-# datesColumn = generateDates(startDate, endDate)
+datesColumn = generateDates(startDate, endDate)
 # Get the dataFrame for actual income and expense transactions
 expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.csv')
 income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv')
@@ -42,9 +42,12 @@ income_df['date'] = pd.to_datetime(income_df['date'].values)
 # generate fabricated dataframe
 
 # TODO: fabricate the Dates, don't bother with payment_to or description
-# expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
-#                                'amount': rng.integers(1, 500, size = num_fake_records)})
-
+expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
+                               'amount': rng.integers(1, 500, size = num_fake_records)})
+income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': typesColumn,
+                               'amount': rng.integers(1, 500, size = num_fake_records)})                               
+print(expense_df_test)
+print(income_df_test)
 # print(expense_df_test)
 # generate the stuff
 # ....
