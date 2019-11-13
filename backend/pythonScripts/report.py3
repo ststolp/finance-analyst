@@ -29,9 +29,6 @@ def generateDates(min_date, max_date):
     dates = []
     return dates
 
-test = ['6/7/2019', '7/7/2018', '5/30/1997']
-testtime = pd.to_datetime(test)
-print(testtime)
 methodsColumn = generateColumn(methods, num_fake_records)
 typesColumn = generateColumn(types, num_fake_records)
 catsColumn = generateColumn(categories, num_fake_records)
@@ -39,10 +36,9 @@ catsColumn = generateColumn(categories, num_fake_records)
 # Get the dataFrame for actual income and expense transactions
 expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.csv')
 income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv')
-expense_df['date'] = pd.to_datetime(expense_df['date'])
-# print(expense_df)
-# print(income_df)
-
+expense_df['date'] = pd.to_datetime(expense_df['date'].values)
+income_df['date'] = pd.to_datetime(income_df['date'].values)
+#print(expense_df)
 # generate fabricated dataframe
 
 # TODO: fabricate the Dates, don't bother with payment_to or description

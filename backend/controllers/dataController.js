@@ -4,7 +4,7 @@ const jsonService = require("../services/json.service");
 function getReport(req, res) {
     let start = new Date(req.query.startDate);
     let end = new Date(req.query.endDate);
-    const now = new Date();      `${start.getMonth() + 1}/${start.getDate() + 1}/${start.getFullYear()}`
+    const now = new Date();      
     startFormated = `${start.getMonth() + 1}/${start.getDate() + 1}/${start.getFullYear()}`;
     endFormated = `${end.getMonth() + 1}/${end.getDate() + 1}/${end.getFullYear()}`;
     nowFormated = `${now.getMonth() + 1}/${now.getDate() + 1}/${now.getFullYear()}`;
@@ -29,7 +29,7 @@ function getIncomes(req, res) {
 
 function addExpense(req, res) {
     let date = new Date(req.body.date);
-    let dateFormated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+    let dateFormated = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     let entry = `\n${dateFormated},${req.body.payment_to},${req.body.method},${req.body.category},${req.body.description},${req.body.amount}`;
     jsonService.add_expense(entry).then(function(response) {
         res.redirect(200, '/expense_form');
@@ -38,7 +38,7 @@ function addExpense(req, res) {
 
 function addIncome(req, res) {
     let date = new Date(req.body.date);
-    let dateFormated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+    let dateFormated = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     let entry = `\n${dateFormated},${req.body.from},${req.body.type},${req.body.amount}`;
     jsonService.add_income(entry).then(function(incomes) {
         res.redirect(200, '/income_form');
