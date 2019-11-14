@@ -14,7 +14,7 @@ categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'wa
 'electric', 'miscellaneous']
 methods = ['Cash', 'Credit', 'Debit', 'Check']
 # The number of records to fabricate
-num_fake_records = 10000
+num_fake_records = 100
 # random number generator
 rng = np.random.default_rng()
 
@@ -26,7 +26,7 @@ def generateColumn(column, num = 100):
     return resultList
 
 def generateDates(min_date, max_date):
-    dates = pd.date_range(min_date, max_date, periods = num_fake_records)
+    dates = pd.date_range(min_date, max_date, periods = num_fake_records, normalize=True)
     return dates
 
 methodsColumn = generateColumn(methods, num_fake_records)
@@ -46,15 +46,11 @@ expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'c
                                'amount': rng.integers(1, 500, size = num_fake_records)})
 income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': typesColumn,
                                'amount': rng.integers(1, 500, size = num_fake_records)})                               
-print(expense_df_test)
-print(income_df_test)
+# print(expense_df_test)
+# print(income_df_test)
 # print(expense_df_test)
 # generate the stuff
 # ....
-# interval = 50
-# startDate = 0
-# endDate = 300
-# now = 200
 #x = list(range(startDate, endDate, interval))
 
 total_income = []
@@ -72,24 +68,14 @@ phone = []
 # for testing purposes
 x = [2015, 2016, 2017, 2018]
 
-#for i in x: 
-    #if i == startDate:
-    #    continue
-    #elif i > now:
-        #print("elif")
-        # incomeSum = # some forecast
-        # incomeY.append(incomeSum)
-    #else:
-        #print("else..")
-        # from data
-        # incomeSum = ?
-        # incomeY.append(incomeSum)
-    #...calc for each category
-
 # iterate through x list, get sums for the time interval, push them onto their respective y list
 #print(expense_df['amount'].groupby(expense_df['category']).sum())
-expense_sums = expense_df['amount'].groupby(expense_df['category']).sum()
-# print(expense_sums)
+expense_sums = expense_df.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
+income_sums = income_df.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
+# expense_sums = expense_df_test.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
+# income_sums = income_df_test.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
+print(expense_sums)
+print(income_sums)
 # income_sums = list(income_df['amount'].groupby(income_df['type']).sum())
 
 # print(expense_df[0])
