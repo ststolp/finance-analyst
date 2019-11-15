@@ -38,10 +38,12 @@ expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.cs
 income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv')
 expense_df['date'] = pd.to_datetime(expense_df['date'].values)
 income_df['date'] = pd.to_datetime(income_df['date'].values)
+
+# TODO: Turn the dates back into temporary strings, but them back in up to the first 7 characters
+
 #print(expense_df)
 # generate fabricated dataframe
 
-# TODO: fabricate the Dates, don't bother with payment_to or description
 expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
                                'amount': rng.integers(1, 500, size = num_fake_records)})
 income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': typesColumn,
@@ -50,8 +52,6 @@ income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': 
 # print(income_df_test)
 # print(expense_df_test)
 # generate the stuff
-# ....
-#x = list(range(startDate, endDate, interval))
 
 total_income = []
 home = []
@@ -67,29 +67,14 @@ internet = []
 phone = []
 # for testing purposes
 x = [2015, 2016, 2017, 2018]
+x = expense_df['date'].values
 
-# iterate through x list, get sums for the time interval, push them onto their respective y list
-#print(expense_df['amount'].groupby(expense_df['category']).sum())
-expense_sums = expense_df.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
-income_sums = income_df.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
-# expense_sums = expense_df_test.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
-# income_sums = income_df_test.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
+# expense_sums = expense_df.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
+# income_sums = income_df.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
+expense_sums = expense_df_test.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
+income_sums = income_df_test.pivot_table('amount', index='date', aggfunc='sum', fill_value=0)
 print(expense_sums)
 print(income_sums)
-# income_sums = list(income_df['amount'].groupby(income_df['type']).sum())
-
-# print(expense_df[0])
-# for expenseType in types:
-#     print(expense_sums[expenseType])
-
-# for cat in cats:
-#     print(income_sums[cat])
-
-# income type: salary, bonus, commision, child support, interest  #
-# income cats: home, auto, food, entertainment, phone, internet, water, gas, charity, electric, miscellaneous
-
-# lets pretend we have the stuff, for testing purposes
-# return json object string
 
 total_income = [5000, 6000, 9000, 8000]
 home = [800, 750, 1820, 930]
@@ -103,6 +88,19 @@ gas = [80, 85, 75, 70]
 electric = [10, 20, 25, 30]
 internet = [30, 25, 20, 10]
 phone = [45, 90, 45, 80]
+
+total_income = income_sums.values
+home = expense_sums['home'].values
+auto = expense_sums['auto'].values
+food = expense_sums['food'].values
+entertainment = expense_sums['entertainment'].values
+misc = expense_sums['miscellaneous'].values
+charity = expense_sums['charity'].values
+water = expense_sums['water'].values
+gas = expense_sums['gas'].values
+electric = expense_sums['electric'].values
+internet = expense_sums['internet'].values
+phone = expense_sums['phone'].values
 
 # print('{"income": {"x": ')
 # print(x)
