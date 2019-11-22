@@ -2,6 +2,7 @@ import sys
 import pandas as pd 
 import numpy as np
 from dateutil.parser import parse
+from datetime import datetime
 # startDate = sys.argv[1]
 # endDate = sys.argv[2]
 # now = sys.argv[3]
@@ -39,7 +40,9 @@ income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv'
 expense_df['date'] = pd.to_datetime(expense_df['date'].values)
 income_df['date'] = pd.to_datetime(income_df['date'].values)
 
-# TODO: Turn the dates back into temporary strings, but them back in up to the first 7 characters
+# copy = expense_df['date'][0].strftime("%Y-%m")
+# expense_df['date'][0] = copy
+# print(expense_df['date'][0])
 
 #print(expense_df)
 # generate fabricated dataframe
@@ -53,100 +56,75 @@ income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': 
 # print(expense_df_test)
 # generate the stuff
 
-total_income = []
-home = []
-auto = []
-food = []
-entertainment = []
-misc = []
-charity = []
-water = []
-gas = []
-electric = []
-internet = []
-phone = []
-# for testing purposes
-x = [2015, 2016, 2017, 2018]
-x = expense_df['date'].values
 
-# expense_sums = expense_df.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
-# income_sums = income_df.pivot_table('amount', index='date', columns='type', aggfunc='sum', fill_value=0)
-expense_sums = expense_df_test.pivot_table('amount', index='date', columns='category', aggfunc='sum', fill_value=0)
-income_sums = income_df_test.pivot_table('amount', index='date', aggfunc='sum', fill_value=0)
-print(expense_sums)
-print(income_sums)
+x = list(range(0, expense_df['date'].size))
 
-total_income = [5000, 6000, 9000, 8000]
-home = [800, 750, 1820, 930]
-auto = [300, 300, 600, 300]
-food = [500, 400, 450, 515]
-entertainment = [100, 110, 120, 130]
-misc = [130, 120, 110, 100]
-charity = [150, 130, 100, 50]
-water = [20, 25, 26, 27]
-gas = [80, 85, 75, 70]
-electric = [10, 20, 25, 30]
-internet = [30, 25, 20, 10]
-phone = [45, 90, 45, 80]
+expense_sums = expense_df.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
+income_sums = income_df.pivot_table('amount', index='month', columns='type', aggfunc='sum', fill_value=0)
+# expense_sums = expense_df_test.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
+# income_sums = income_df_test.pivot_table('amount', index='month', aggfunc='sum', fill_value=0)
+# print(expense_sums)
+# print(income_sums)
 
-total_income = income_sums.values
-home = expense_sums['home'].values
-auto = expense_sums['auto'].values
-food = expense_sums['food'].values
-entertainment = expense_sums['entertainment'].values
-misc = expense_sums['miscellaneous'].values
-charity = expense_sums['charity'].values
-water = expense_sums['water'].values
-gas = expense_sums['gas'].values
-electric = expense_sums['electric'].values
-internet = expense_sums['internet'].values
-phone = expense_sums['phone'].values
+# TODO: only assign them stuff is there are values
+total_income = list(income_sums.values)
+home = list(expense_sums['home'].values)
+auto = list(expense_sums['auto'].values)
+food = list(expense_sums['food'].values)
+entertainment = list(expense_sums['entertainment'].values)
+misc = list(expense_sums['miscellaneous'].values)
+charity = list(expense_sums['charity'].values)
+water = list(expense_sums['water'].values)
+gas = list(expense_sums['gas'].values)
+electric = list(expense_sums['electric'].values)
+internet = list(expense_sums['internet'].values)
+phone = list(expense_sums['phone'].values)
 
-# print('{"income": {"x": ')
-# print(x)
-# print(', "y": ')
-# print(total_income)
-# print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(home)
-# print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(auto)
-# print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(food)
-# print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(entertainment)
-# print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(misc)
-# print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(charity)
-# print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(water)
-# print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(gas)
-# print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(electric)
-# print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(internet)
-# print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
-# print(x)
-# print(',"y": ')
-# print(', "type": "scatter", "name": "Phone"}}')
+print('{"income": {"x": ')
+print(x)
+print(', "y": ')
+print(total_income)
+print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
+print(x)
+print(',"y": ')
+print(home)
+print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
+print(x)
+print(',"y": ')
+print(auto)
+print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
+print(x)
+print(',"y": ')
+print(food)
+print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
+print(x)
+print(',"y": ')
+print(entertainment)
+print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
+print(x)
+print(',"y": ')
+print(misc)
+print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
+print(x)
+print(',"y": ')
+print(charity)
+print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
+print(x)
+print(',"y": ')
+print(water)
+print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
+print(x)
+print(',"y": ')
+print(gas)
+print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
+print(x)
+print(',"y": ')
+print(electric)
+print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
+print(x)
+print(',"y": ')
+print(internet)
+print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
+print(x)
+print(',"y": ')
+print(', "type": "scatter", "name": "Phone"}}')
