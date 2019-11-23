@@ -28,14 +28,14 @@
             }
         }
     </script>
-    <title>Expense Form</title>
+    <title>Transaction Form</title>
 </head>
 <body>
-    <p>Expense Form</p>
+    <p>Transaction Form</p>
     <form action='/addExpense' method='post'>
         <label>Date</label>
         <input type='date' name='date'>
-        <label>Payment To</label>
+        <label>Payment To/From</label>
         <input type='text' name='payment_to'>
         <label>Method</label>
         <select name='method'>
@@ -57,6 +57,7 @@
             <option value="electric">Electric</option>
             <option value="internet">Internet</option>
             <option value='phone'>Phone</option>
+            <option value='income'>Income</option>
         </select>
         <label>Description</label>
         <input type='text' name='description'>

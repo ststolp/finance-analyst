@@ -5,9 +5,9 @@ function getReport(req, res) {
     let start = new Date(req.query.startDate);
     let end = new Date(req.query.endDate);
     const now = new Date();      
-    startFormated = `${start.getMonth() + 1}/${start.getDate() + 1}/${start.getFullYear()}`;
-    endFormated = `${end.getMonth() + 1}/${end.getDate() + 1}/${end.getFullYear()}`;
-    nowFormated = `${now.getMonth() + 1}/${now.getDate() + 1}/${now.getFullYear()}`;
+    startFormated = `${start.getMonth() + 1}/${start.getDate()}/${start.getFullYear()}`;
+    endFormated = `${end.getMonth() + 1}/${end.getDate()}/${end.getFullYear()}`;
+    nowFormated = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
     console.log(`${startFormated}, ${endFormated}, ${nowFormated}`);
     pythonService.get_report(startFormated, endFormated, nowFormated).then(function(results) {
         console.log(`Service: ${results}`);

@@ -3,12 +3,13 @@ import pandas as pd
 import numpy as np
 from dateutil.parser import parse
 from datetime import datetime
-# startDate = sys.argv[1]
-# endDate = sys.argv[2]
-# now = sys.argv[3]
-startDate = '2001-08-01'
-endDate = '2005-12-31'
-now = '2019-12-01'
+
+# startDate = pd.to_datetime(sys.argv[1])
+# endDate = pd.to_datetime(sys.argv[2])
+# now = pd.to_datetime(sys.argv[3])
+startDate = pd.to_datetime('1/1/2019')
+endDate = pd.to_datetime('12/31/2019')
+now = pd.to_datetime('7/4/2019')
 
 types = ['salary', 'bonus', 'commision', 'child support', 'interest']
 categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
@@ -33,41 +34,40 @@ def generateDates(min_date, max_date):
 methodsColumn = generateColumn(methods, num_fake_records)
 typesColumn = generateColumn(types, num_fake_records)
 catsColumn = generateColumn(categories, num_fake_records)
-datesColumn = generateDates(startDate, endDate)
+# datesColumn = generateDates(startDate, endDate)
 # Get the dataFrame for actual income and expense transactions
 expense_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/expense.csv')
-income_df = pd.read_csv('C:/Users/scsto/finance-analyst/backend/data/income.csv')
+
+# Make the date column into datetimes
 expense_df['date'] = pd.to_datetime(expense_df['date'].values)
-income_df['date'] = pd.to_datetime(income_df['date'].values)
 
-# copy = expense_df['date'][0].strftime("%Y-%m")
-# expense_df['date'][0] = copy
-# print(expense_df['date'][0])
+# Sort the date values ...
+expense_df = expense_df.sort_values(by='date')
 
-#print(expense_df)
-# generate fabricated dataframe
+# ... and make date into the index...
+expense_df.index = expense_df['date']
 
-expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
-                               'amount': rng.integers(1, 500, size = num_fake_records)})
-income_df_test = pd.DataFrame({'date': datesColumn, 'from': 'some guy', 'type': typesColumn,
-                               'amount': rng.integers(1, 500, size = num_fake_records)})                               
-# print(expense_df_test)
-# print(income_df_test)
-# print(expense_df_test)
-# generate the stuff
+# ... in order to slice the dataframe within the provided date range.
+new_expense = expense_df[startDate:endDate]
+# print(new_expense)
 
+# expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
+#                                'amount': rng.integers(1, 500, size = num_fake_records)})
 
-x = list(range(0, expense_df['date'].size))
-
-expense_sums = expense_df.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
-income_sums = income_df.pivot_table('amount', index='month', columns='type', aggfunc='sum', fill_value=0)
+expense_sums = new_expense.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
+x = list(range(0, expense_sums['home'].size))
 # expense_sums = expense_df_test.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
 # income_sums = income_df_test.pivot_table('amount', index='month', aggfunc='sum', fill_value=0)
-# print(expense_sums)
-# print(income_sums)
 
-# TODO: only assign them stuff is there are values
-total_income = list(income_sums.values)
+# TODO: If now comes before the endDate, Only predict one month in the future based on 
+# the trajectory from the last two data samples.
+# "Always in motion is the future - Yoda"
+if now < endDate:
+    print('end date is in the future\n')
+    
+
+# TODO: only assign them stuff if there are values
+total_income = list(expense_sums['income'].values)
 home = list(expense_sums['home'].values)
 auto = list(expense_sums['auto'].values)
 food = list(expense_sums['food'].values)
