@@ -63,6 +63,7 @@
                         lines.water, lines.gas, lines.electric, lines.internet, lines.phone];
                      //   alert(lines.income)
                        // alert(data);
+                       document.getElementById('myDiv').innerHTML = '';
                         Plotly.plot("myDiv", data);
                     }else{
                         reportElement.innerHTML = "error";
