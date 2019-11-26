@@ -85,7 +85,11 @@ if now < endDate:
         if len(expense_sums[category]) < 2:
             future_df[category] = [expense_sums[category][0]]
         else:
-            future_df[category] = [expense_sums[category][len(expense_sums[category]) - 1] + expense_sums[category][len(expense_sums[category]) - 1] - expense_sums[category][len(expense_sums[category]) - 2]]
+            value = [expense_sums[category][len(expense_sums[category]) - 1] + expense_sums[category][len(expense_sums[category]) - 1] - expense_sums[category][len(expense_sums[category]) - 2]]
+            if value[0] >= 0:
+                future_df[category] = value
+            else: 
+                future_df[category] = [0]
     expense_sums = expense_sums.append(future_df)
 
 print('{"income": {"x": ')
