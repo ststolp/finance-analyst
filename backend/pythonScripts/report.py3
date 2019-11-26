@@ -7,13 +7,13 @@ from datetime import datetime
 startDate = pd.to_datetime(sys.argv[1])
 endDate = pd.to_datetime(sys.argv[2])
 now = pd.to_datetime(sys.argv[3])
-# startDate = pd.to_datetime('4/1/2019')
-# endDate = pd.to_datetime('12/31/2019')
-# now = pd.to_datetime('7/4/2019')
+# startDate = pd.to_datetime('1/1/2019')
+# endDate = pd.to_datetime('6/30/2019')
+# now = pd.to_datetime('2/4/2019')
 
 types = ['salary', 'bonus', 'commision', 'child support', 'interest']
 categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
-'electric', 'miscellaneous']
+'electric', 'miscellaneous', 'income']
 methods = ['Cash', 'Credit', 'Debit', 'Check']
 # The number of records to fabricate
 num_fake_records = 100
@@ -49,7 +49,6 @@ expense_df.index = expense_df['date']
 
 # ... in order to slice the dataframe within the provided date range.
 new_expense = expense_df[startDate:endDate]
-# print(new_expense)
 
 # expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
 #                                'amount': rng.integers(1, 500, size = num_fake_records)})
@@ -60,107 +59,81 @@ x = list(range(len(expense_sums.index)))
 # expense_sums = expense_df_test.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
 # income_sums = income_df_test.pivot_table('amount', index='month', aggfunc='sum', fill_value=0)
 
+# TODO: The number of zeros have to match the length of indexes
+zeroList = []
+for b in x:
+    zeroList.append(0)
+
+for category in categories:
+    try: 
+        list(expense_sums[category].values)
+    except KeyError:
+        expense_sums[category] = zeroList
+
 # TODO: If now comes before the endDate, Only predict one month in the future based on 
 # the trajectory from the last two data samples.
 # "Always in motion is the future - Yoda"
-# if now < endDate:
-    # print('end date is in the future\n')
-
-try:
-    total_income = list(expense_sums['income'].values)
-except KeyError:
-    total_income = [0]
-try:
-    home = list(expense_sums['home'].values)
-except KeyError:
-    home = [0]
-try: 
-    charity = list(expense_sums['charity'].values)
-except KeyError:
-    charity = [0]
-try:   
-    water = list(expense_sums['water'].values)
-except KeyError:
-    water = [0]
-try:
-    auto = list(expense_sums['auto'].values) 
-except KeyError: # no index
-    auto = [0]
-try:
-    food = list(expense_sums['food'].values)
-except KeyError: # no index
-    food = [0]
-try:
-    entertainment = list(expense_sums['entertainment'].values)
-except KeyError:
-    entertainment = [0]
-try:
-    misc = list(expense_sums['miscellaneous'].values)
-except KeyError:
-    misc = [0]
-try:
-    gas = list(expense_sums['gas'].values)
-except KeyError:
-    gas = [0]
-try:
-    electric = list(expense_sums['electric'].values)
-except KeyError:
-    electric = [0]
-try: 
-    internet = list(expense_sums['internet'].values)
-except KeyError:
-    internet = [0]
-try: 
-    phone = list(expense_sums['phone'].values)
-except KeyError:
-    phone = [0]
+# Use dataframe append function
+if now < endDate:
+    # add one month to the time axis
+    x.append(len(x))
+    # iterate through all of the columns like categories, 
+    future_df = pd.DataFrame()
+    future_df['date'] = 'future'
+    future_df.index = future_df['date']
+    for category in categories:
+        if len(expense_sums[category]) < 2:
+            future_df[category] = [expense_sums[category][0]]
+        else:
+            future_df[category] = [expense_sums[category][len(expense_sums[category]) - 1] + expense_sums[category][len(expense_sums[category]) - 1] - expense_sums[category][len(expense_sums[category]) - 2]]
+    expense_sums = expense_sums.append(future_df)
 
 print('{"income": {"x": ')
 print(x)
 print(', "y": ')
-print(total_income)
+print(list(expense_sums['income'].values))
 print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
 print(x)
 print(',"y": ')
-print(home)
+print(list(expense_sums['home'].values))
 print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
 print(x)
 print(',"y": ')
-print(auto)
+print(list(expense_sums['auto'].values))
 print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
 print(x)
 print(',"y": ')
-print(food)
+print(list(expense_sums['food'].values))
 print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
 print(x)
 print(',"y": ')
-print(entertainment)
+print(list(expense_sums['entertainment'].values))
 print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
 print(x)
 print(',"y": ')
-print(misc)
+print(list(expense_sums['miscellaneous'].values))
 print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
 print(x)
 print(',"y": ')
-print(charity)
+print(list(expense_sums['charity'].values))
 print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
 print(x)
 print(',"y": ')
-print(water)
+print(list(expense_sums['water'].values))
 print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
 print(x)
 print(',"y": ')
-print(gas)
+print(list(expense_sums['gas'].values))
 print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
 print(x)
 print(',"y": ')
-print(electric)
+print(list(expense_sums['electric'].values))
 print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
 print(x)
 print(',"y": ')
-print(internet)
+print(list(expense_sums['internet'].values))
 print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
 print(x)
 print(',"y": ')
-print(phone)
+print(list(expense_sums['phone'].values))
 print(', "type": "scatter", "name": "Phone"}}')
