@@ -22,14 +22,14 @@ module.exports.get_txns = function(arg1, arg2, arg3) {
   });
 }
 
-module.exports.get_report = function(arg1, arg2, arg3) {
+module.exports.get_report = function(arg1, arg2, arg3, arg4) {
   return new Promise((resolve, reject) => {
     let options = {
       mode: 'text',
     // pythonPath: 'path/to/python',
       pythonOptions: ['-u'], // get print results in real-time
       scriptPath: 'C:/Users/scsto/finance-analyst/backend/pythonScripts',
-      args: [arg1, arg2, arg3]
+      args: [arg1, arg2, arg3, arg4]
     };
 
     /* TODO have this function return a promise */

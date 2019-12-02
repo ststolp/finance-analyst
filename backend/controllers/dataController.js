@@ -4,12 +4,14 @@ const jsonService = require("../services/json.service");
 function getReport(req, res) {
     let start = new Date(req.query.startDate);
     let end = new Date(req.query.endDate);
-    const now = new Date();      
+    const now = new Date(); 
+    const totalBool = req.query.total;
+    console.log(totalBool);
     startFormated = `${start.getMonth() + 1}/${start.getDate()}/${start.getFullYear()}`;
     endFormated = `${end.getMonth() + 1}/${end.getDate()}/${end.getFullYear()}`;
     nowFormated = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
     console.log(`${startFormated}, ${endFormated}, ${nowFormated}`);
-    pythonService.get_report(startFormated, endFormated, nowFormated).then(function(results) {
+    pythonService.get_report(startFormated, endFormated, nowFormated, totalBool).then(function(results) {
         console.log(`Service: ${results}`);
         res.status(200).json(results);
     });

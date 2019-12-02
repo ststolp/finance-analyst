@@ -7,6 +7,12 @@ from datetime import datetime
 startDate = pd.to_datetime(sys.argv[1])
 endDate = pd.to_datetime(sys.argv[2])
 now = pd.to_datetime(sys.argv[3])
+totalBool = sys.argv[4]
+if totalBool == 'on':
+    totalBool = True
+else:
+    totalBool = False
+
 # startDate = pd.to_datetime('1/1/2019')
 # endDate = pd.to_datetime('6/30/2019')
 # now = pd.to_datetime('2/4/2019')
@@ -52,14 +58,16 @@ new_expense = expense_df[startDate:endDate]
 
 # expense_df_test = pd.DataFrame({'date': datesColumn, 'method': methodsColumn, 'category': catsColumn,
 #                                'amount': rng.integers(1, 500, size = num_fake_records)})
-
+temp_sums = new_expense.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
 expense_sums = new_expense.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
 
+dates = expense_df.pop('date')
+# print(dates)
 x = list(range(len(expense_sums.index)))
 # expense_sums = expense_df_test.pivot_table('amount', index='month', columns='category', aggfunc='sum', fill_value=0)
 # income_sums = income_df_test.pivot_table('amount', index='month', aggfunc='sum', fill_value=0)
 
-# TODO: The number of zeros have to match the length of indexes
+# The number of zeros have to match the length of indexes
 zeroList = []
 for b in x:
     zeroList.append(0)
@@ -69,8 +77,12 @@ for category in categories:
         list(expense_sums[category].values)
     except KeyError:
         expense_sums[category] = zeroList
+    try: 
+        list(temp_sums[category].values)
+    except KeyError:
+        temp_sums[category] = zeroList
 
-# TODO: If now comes before the endDate, Only predict one month in the future based on 
+# If now comes before the endDate, Only predict one month in the future based on 
 # the trajectory from the last two data samples.
 # "Always in motion is the future - Yoda"
 # Use dataframe append function
@@ -92,52 +104,76 @@ if now < endDate:
                 future_df[category] = [0]
     expense_sums = expense_sums.append(future_df)
 
-print('{"income": {"x": ')
-print(x)
-print(', "y": ')
-print(list(expense_sums['income'].values))
-print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['home'].values))
-print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['auto'].values))
-print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['food'].values))
-print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['entertainment'].values))
-print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['miscellaneous'].values))
-print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['charity'].values))
-print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['water'].values))
-print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['gas'].values))
-print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['electric'].values))
-print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['internet'].values))
-print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
-print(x)
-print(',"y": ')
-print(list(expense_sums['phone'].values))
-print(', "type": "scatter", "name": "Phone"}}')
+totalBool = True
+if totalBool == False:
+    print('{"income": {"x": ')
+    print(x)
+    print(', "y": ')
+    print(list(expense_sums['income'].values))
+    print(', "type": "scatter", "name": "Total Income"}, "home": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['home'].values))
+    print(', "type": "scatter", "name": "Home"}, "auto": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['auto'].values))
+    print(', "type": "scatter", "name": "Auto"}, "food": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['food'].values))
+    print(', "type": "scatter", "name": "Food"}, "entertainment": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['entertainment'].values))
+    print(', "type": "scatter", "name": "Entertainment"}, "miscellaneous": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['miscellaneous'].values))
+    print(', "type": "scatter", "name": "Miscellaneous"}, "charity": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['charity'].values))
+    print(', "type": "scatter", "name": "Charity"}, "water": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['water'].values))
+    print(', "type": "scatter", "name": "Water"}, "gas": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['gas'].values))
+    print(', "type": "scatter", "name": "Gas"}, "electric": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['electric'].values))
+    print(', "type": "scatter", "name": "Electric"}, "internet": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['internet'].values))
+    print(', "type": "scatter", "name": "Internet"}, "phone": {"x": ')
+    print(x)
+    print(',"y": ')
+    print(list(expense_sums['phone'].values))
+    print(', "type": "scatter", "name": "Phone"}}')
+else:
+    x.pop()
+    print('{"income": {"x": ')
+    print(x)
+    print(', "y": ')
+    print(list(temp_sums['income'].values))
+    incomeVals = temp_sums.pop('income')
+    grand_expense = new_expense.pivot_table('amount', index='month', aggfunc='sum', fill_value=0)
+    print(', "type": "scatter", "name": "Total Income"}, "total_expenses": {"x": ')
+    print(x)
+    print(', "y": ')
+    print(list(grand_expense["amount"].values))
+    print(', "type": "scatter", "name": "Total Expenses"}, "balance": {"x": ')
+    print(x)
+    print(', "y": ')
+    balance = []
+    incomeStuff= list(incomeVals.values)
+    expenses = list(grand_expense["amount"].values)
+    for b in x:
+        balance.append(incomeStuff[b] - expenses[b])
+    print(balance)
+    print(', "type": "scatter", "name": "Balance"}}')

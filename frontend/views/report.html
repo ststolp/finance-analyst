@@ -31,8 +31,9 @@
         function getReport() {
             const startDate = document.getElementById('start').value;
             const endDate = document.getElementById('end').value;
+            const totalBool = document.getElementById('total').value;
             const endpoint = '/getReport';
-            const params = `?startDate='${startDate}'&endDate='${endDate}'`;
+            const params = `?startDate='${startDate}'&endDate='${endDate}'&total='${totalBool}'`;
             let request = new XMLHttpRequest();
             const target = endpoint + params;
             request.open("GET", target);    
@@ -58,9 +59,14 @@
                        // alert(typeof(lines));
                         console.log(lines);
                         //alert(lines);
-                        let data = [lines.income, lines.home, lines.auto,
-                        lines.food, lines.entertainment, lines.miscellaneous, lines.charity,
-                        lines.water, lines.gas, lines.electric, lines.internet, lines.phone];
+                        let data = [];
+                        if (totalBool == 'on') {
+                            data = [lines.income, lines.total_expenses, lines.balance];
+                        } else {
+                            data = [lines.income, lines.home, lines.auto,
+                            lines.food, lines.entertainment, lines.miscellaneous, lines.charity,
+                            lines.water, lines.gas, lines.electric, lines.internet, lines.phone];
+                        }
                      //   alert(lines.income)
                        // alert(data);
                        document.getElementById('myDiv').innerHTML = '';
@@ -85,6 +91,8 @@
        <input type='date' name='start' value='2019-06-01' id='start'>
        <label>End Date</label>
        <input type='date' name='end' value='2019-06-30' id='end'>
+       <label>Show Balance</label>
+       <input type="checkbox" name='total' id='total'>
        <button type='button' value='Get Report' onclick='getReport()'>Get Report</button>
 </body>
 </html>
