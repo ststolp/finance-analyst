@@ -5,35 +5,18 @@
     <!--<script type="text/javascript" src="/js/report.js"></script> -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
-        // window.onload = function() {
-        //     let element = document.getElementById('myDiv');
-        //     let income = {
-        //        x: [2015, 2016, 2017, 2018],
-        //        y: [20000, 10000, 500, 300],
-        //        type: 'scatter'
-        //     };
-
-        //     let home = {
-        //         x: [2015, 2016, 2017, 2018],
-        //         y: [200, 100, 500, 1000],
-        //         type: 'scatter'
-        //     };
-
-        //     let auto = {
-        //         x: [2015, 2016, 2017, 2018],
-        //         y: [600, 500, 450, 800],
-        //         type: 'scatter'
-        //     };
-
-        //     let data = [income, home, auto];
-        //     Plotly.plot("myDiv", data);
-        // }
         function getReport() {
             const startDate = document.getElementById('start').value;
             const endDate = document.getElementById('end').value;
-            const totalBool = document.getElementById('total').value;
+            const totalBool = document.getElementById('total').checked;
+            let totalBool_string = "";
+            if (totalBool) {
+                totalBool_string = "on";
+            } else {
+                totalBool_string = 'off';
+            }
             const endpoint = '/getReport';
-            const params = `?startDate='${startDate}'&endDate='${endDate}'&total='${totalBool}'`;
+            const params = `?startDate='${startDate}'&endDate='${endDate}'&total='${totalBool_string}'`;
             let request = new XMLHttpRequest();
             const target = endpoint + params;
             request.open("GET", target);    
@@ -47,30 +30,27 @@
                         let string = oldString.replace(/\\/g, '');
                         let stringB = string.replace(/\"\[/g, '[');
                         let stringC = stringB.replace(/\]\"/g, ']');
-                        //alert(`StringC: ${stringC}`)
                         let stringE = stringC.replace(/\",\[/g, '[');
                         let stringD = stringE.replace(/\],\"/g, ']');
-                        //alert(`stringD: ${stringD}`);
                         let results = stringD.substring(2, stringD.length - 2);
-                      //  alert(`request text: ${results}`);
                         console.log(results);
-                        let lines = JSON.parse(results);
-                       // alert(`Type of response: ${typeof(request.responseText)}`);
-                       // alert(typeof(lines));
-                        console.log(lines);
-                        //alert(lines);
-                        let data = [];
-                        if (totalBool == 'on') {
-                            data = [lines.income, lines.total_expenses, lines.balance];
+                        let lines = "";
+                        if (results) {
+                            lines = JSON.parse(results);
+                            console.log(lines);
+                            let data = [];
+                            if (totalBool) {
+                                data = [lines.income, lines.total_expenses, lines.balance];
+                            } else {
+                                data = [lines.income, lines.home, lines.auto,
+                                lines.food, lines.entertainment, lines.miscellaneous, lines.charity,
+                                lines.water, lines.gas, lines.electric, lines.internet, lines.phone];
+                            }
+                            document.getElementById('myDiv').innerHTML = '';
+                            Plotly.plot("myDiv", data);
                         } else {
-                            data = [lines.income, lines.home, lines.auto,
-                            lines.food, lines.entertainment, lines.miscellaneous, lines.charity,
-                            lines.water, lines.gas, lines.electric, lines.internet, lines.phone];
+                            reportElement.innerHTML = "<br><br><p>  NO DATA </p>";
                         }
-                     //   alert(lines.income)
-                       // alert(data);
-                       document.getElementById('myDiv').innerHTML = '';
-                        Plotly.plot("myDiv", data);
                     }else{
                         reportElement.innerHTML = "error";
                     }
@@ -85,7 +65,7 @@
 </head>
 <body>
     <p>Report</p>
-    <!--<button onclick='getReport()'>Show Report</button> -->
+    <a href='home.html'>Home</a>
     <div id="myDiv" style="width:1200px;height:500px;"></div>
        <label>Start Date</label>
        <input type='date' name='start' value='2019-06-01' id='start'>
