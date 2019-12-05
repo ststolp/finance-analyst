@@ -14,10 +14,6 @@ if totalBool == "'on'":
 else:
     totalBool = False
 
-# startDate = pd.to_datetime('1/1/2019')
-# endDate = pd.to_datetime('6/30/2019')
-# now = pd.to_datetime('2/4/2019')
-
 types = ['salary', 'bonus', 'commision', 'child support', 'interest']
 categories =  ['home', 'auto', 'food', 'entertainment', 'phone', 'internet', 'water', 'gas', 'charity',
 'electric', 'miscellaneous', 'income']
@@ -182,3 +178,5 @@ else:
         print(',"y": ')
         print(list(expense_sums['phone'].values))
         print(', "type": "scatter", "name": "Phone"}}')
+    else:
+        print()

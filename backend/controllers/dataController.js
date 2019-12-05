@@ -35,7 +35,7 @@ function addExpense(req, res) {
     let month = `${date.getFullYear()}-${date.getMonth() + 1}`;
     let entry = `\n${dateFormated},${month},${req.body.payment_to},${req.body.method},${req.body.category},${req.body.description},${req.body.amount}`;
     jsonService.add_expense(entry).then(function(response) {
-        res.redirect(200, '/expense_form');
+        res.redirect(200, '/expense_form.html');
     });
 };
 
