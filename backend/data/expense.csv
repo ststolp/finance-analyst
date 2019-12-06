@@ -1,9 +1,9 @@
 date,month,payment_to,method,category,description,amount
 11/11/2019,2019-11,Wal-Mart,cash,home,sdfs,500.00
 11/11/2019,2019-11,Wal-Mart,cash,home,somes,45
-5/12/2019,2019-5,sdf,cash,charity,sstuff,45
-5/13/2019,2019-5,Denny's,cash,charity,studfd,60.00
-2/14/2019,2019-2,Zeus,debit,home,payment,653
+5/12/2019,2019-05,sdf,cash,charity,sstuff,45
+5/13/2019,2019-05,Denny's,cash,charity,studfd,60.00
+2/14/2019,2019-02,Zeus,debit,home,payment,653
 10/31/2019,2019-10,me,debit,home,stuffere,360.00
 10/31/2019,2019-10,sdf,cash,auto,my bill,45.07
 10/31/2019,2019-10,RainTree,check,food,food,4.30
@@ -20,5 +20,146 @@ date,month,payment_to,method,category,description,amount
 12/4/2019,2019-12,Denny's,cash,water,cup o water,0.01
 12/4/2019,2019-12,Denny's,cash,water,cup o water,0.01
 12/10/2019,2019-12,The Mall,credit,home,Furniture,200.00
-12/10/2019,2019-12,The Mall,credit,home,Furniture,200.00
 12/31/1999,1999-12,New York,cash,miscellaneous,Taxes,2.15
+9/8/2018,2018-09,Bank,debit,home,Payment,450.00
+7/14/2018,2018-07,Bank,debit,home,Payment,500.00
+8/14/2018,2018-08,Bank,debit,home,So,475.00
+10/14/2018,2018-10,Bank,cash,home,Payment,450.00
+11/14/2018,2018-11,BAnk,cash,home,Som,525.00
+12/14/2018,2018-12,BAnk,cash,home,S,575.00
+7/14/2018,2018-07,Church,cash,charity,Tithing,90.00
+8/14/2018,2018-08,Church,cash,charity,Tithing,95.00
+9/14/2018,2018-09,Church,cash,charity,Tithing,97.00
+10/14/2018,2018-10,Church,cash,charity,Tithing,89.00
+11/14/2018,2018-11,Church,cash,charity,Tithing,92.00
+12/14/2018,2018-12,Church,cash,charity,Tithing,86.00
+12/14/2019,2019-12,Bank,cash,home,Payment,590.00
+7/19/2018,2018-07,Bookstore,debit,entertainment,Book,25.00
+7/3/2018,2018-07,Wal-Mart,cash,entertainment,Independence day,45.33
+12/20/2018,2018-12,Tree lot,cash,entertainment,Christmas Tree,35.00
+7/2/2018,2018-07,Auto-Owners,debit,auto,Insurerance,117.00
+8/14/2018,2018-08,Auto-Owners,debit,auto,Insurerance,117.15
+9/19/2018,2018-09,Auto-Owners,debit,auto,Insurerance,117.00
+10/19/2018,2018-10,Auto-Owners,debit,auto,Insurerance,117.00
+11/19/2018,2018-11,Auto-Owners,debit,auto,Insurance,117.00
+12/19/2018,2018-12,Auto-Owners,debit,auto,Insurance,117.00
+1/19/2019,2019-01,Auto-Owners,debit,auto,Insurance,117.00
+1/17/2019,2019-01,Car part shop,debit,auto,Blades,24.00
+2/19/2019,2019-02,Auto-Owners,debit,auto,Insurance,117.00
+3/19/2019,2019-03,Auto-Owners,debit,auto,Insurance,117.00
+4/20/2019,2019-04,Auto-Owners,debit,auto,Insurance,117.00
+5/14/2019,2019-05,Auto-Owners,debit,auto,Insur,117.00
+6/15/2019,2019-06,Auto-Owners,debit,auto,Insur,117.00
+7/19/2019,2019-07,Auto-Owners,debit,auto,Insur,117.00
+8/14/2019,2019-08,Auto-Owners,debit,auto,Insurance,117.00
+9/19/2019,2019-09,Auto-Owners,debit,auto,Insur,117.00
+10/19/2019,2019-10,Auto-Owners,debit,auto,Insur,117.00
+11/19/2019,2019-11,Auto-Owners,debit,auto,Insur,117.00
+12/19/2019,2019-12,Auto-Owners,debit,auto,Insur,117.00
+1/12/2019,2019-01,Bank,cash,home,Rent,500.00
+3/12/2018,2019-03,Bank,cash,home,Rent,500.00
+4/12/2018,2019-04,Bank,cash,home,Rent,500.00
+5/12/2018,2019-05,Bank,cash,home,Rent,500.00
+6/06/2018,2019-06,Bank,cash,home,Rent,500.00
+7/12/2018,2019-07,Bank,cash,home,Rent,500.00
+8/12/2018,2019-08,Bank,cash,home,Rent,500.00
+9/12/2018,2019-09,Bank,cash,home,Rent,500.00
+10/12/2018,2019-10,Bank,cash,home,Rent,550.00
+11/12/2018,2019-11,Bank,cash,home,Rent,577.00
+12/12/2018,2019-12,Bank,cash,home,Rent,500.00
+1/12/2019,2019-01,Bank,cash,home,Rent,500.00
+2/12/2019,2019-02,Bank,cash,home,Rent,500.00
+3/12/2019,2019-03,Bank,cash,home,Rent,500.00
+4/12/2019,2019-04,Bank,cash,home,Rent,500.00
+5/12/2019,2019-05,Bank,cash,home,Rent,500.00
+6/12/2019,2019-06,Bank,cash,home,Rent,500.00
+7/12/2019,2019-07,Bank,cash,home,Rent,500.00
+8/12/2019,2019-08,Bank,cash,home,Rent,500.00
+9/12/2019,2019-09,Bank,cash,home,Rent,500.00
+10/12/2019,2019-10,Bank,cash,home,Rent,470.00
+10/15/2019,2019-10,Tree Spirit,check,gas,some gas,20.00
+7/20/2018,2018-07,Tree Spirit,check,gas,some gas,21.00
+8/20/2018,2018-08,Tree Spirit,check,gas,some gas,18.00
+8/03/2018,2018-08,Tree Spirit,check,gas,some gas,10.00
+9/03/2018,2018-09,Tree Spirit,check,gas,some gas,25.00
+9/18/2018,2018-09,Tree Spirit,check,gas,some gas,19.00
+10/03/2018,2018-10,Tree Spirit,check,gas,some gas,15.00
+10/20/2018,2018-10,Tree Spirit,check,gas,some gas,21.00
+11/03/2018,2018-11,Tree Spirit,check,gas,some gas,14.00
+11/20/2018,2018-11,Tree Spirit,check,gas,some gas,13.00
+12/03/2018,2018-12,Tree Spirit,check,gas,some gas,16.34
+12/25/2018,2018-12,Tree Spirit,check,gas,some gas,11.00
+1/03/2019,2019-01,Tree Spirit,check,gas,some gas,20.00
+1/10/2019,2019-01,Tree Spirit,check,gas,some gas,22.00
+3/03/2019,2019-03,Tree Spirit,check,gas,some gas,20.00
+4/03/2019,2019-04,Tree Spirit,check,gas,some gas,25.00
+5/03/2019,2019-05,Tree Spirit,check,gas,some gas,18.00
+6/03/2019,2019-06,Tree Spirit,check,gas,some gas,20.00
+6/16/2019,2019-06,Tree Spirit,check,gas,some gas,17.00
+7/04/2019,2019-07,Tree Spirit,check,gas,some gas,15.00
+7/20/2019,2019-07,Tree Spirit,check,gas,some gas,16.00
+8/03/2019,2019-08,Tree Spirit,check,gas,some gas,24.00
+9/03/2019,2019-09,Tree Spirit,check,gas,some gas,18.00
+10/03/2019,2019-10,Tree Spirit,check,gas,some gas,19.00
+11/03/2019,2019-11,Tree Spirit,check,gas,some gas,20.00
+12/03/2019,2019-12,Tree Spirit,check,gas,some gas,21.00
+7/19/2018,2018-07,Creamery,cash,food,Lunch,13.00
+8/17/2018,2018-08,Wal-Mart,debit,food,Groceries,25.00
+9/17/2018,2018-09,Wal-Mart,debit,food,Groceries,50.00
+10/17/2018,2018-10,Wal-Mart,debit,food,Groceries,5.00
+11/17/2018,2018-11,Wal-Mart,debit,food,Groceries,12.00
+12/17/2018,2018-12,Wal-Mart,debit,food,Groceries,40.00
+1/17/2019,2019-01,Wal-Mart,debit,food,Groceries,45.00
+2/17/2019,2019-02,Wal-Mart,debit,food,Groceries,25.00
+3/17/2019,2019-03,Wal-Mart,debit,food,Groceries,30.00
+4/17/2019,2019-04,Wal-Mart,debit,food,Groceries,35.00
+5/17/2019,2019-05,Wal-Mart,debit,food,Groceries,15.00
+6/17/2019,2019-06,Wal-Mart,debit,food,Groceries,50.00
+7/17/2019,2019-07,Wal-Mart,debit,food,Groceries,13.00
+8/20/2019,2019-08,Wal-Mart,debit,food,Groceries,25.00
+9/17/2019,2019-09,Wal-Mart,debit,food,Groceries,29.00
+10/17/2019,2019-10,Wal-Mart,debit,food,Groceries,27.00
+11/17/2019,2019-11,Wal-Mart,debit,food,Groceries,30.00
+12/17/2019,2019-12,Wal-Mart,debit,food,Groceries,40.00
+1/17/2019,2019-01,Wal-Mart,debit,food,Groceries,45.00
+7/25/2018,2018-07,Creamery,cash,food,Lunch,20.00
+8/26/2018,2018-08,Wal-Mart,debit,food,Groceries,19.00
+9/19/2018,2018-09,Wal-Mart,debit,food,Groceries,40.00
+10/20/2018,2018-10,Wal-Mart,debit,food,Groceries,15.00
+11/30/2018,2018-11,Wal-Mart,debit,food,Groceries,30.00
+12/10/2018,2018-12,Wal-Mart,debit,food,Groceries,30.00
+1/25/2019,2019-01,Wal-Mart,debit,food,Groceries,18.00
+2/19/2019,2019-02,Wal-Mart,debit,food,Groceries,45.00
+3/08/2019,2019-03,Wal-Mart,debit,food,Groceries,13.00
+4/20/2019,2019-04,Wal-Mart,debit,food,Groceries,25.00
+5/10/2019,2019-05,Wal-Mart,debit,food,Groceries,16.00
+6/20/2019,2019-06,Wal-Mart,debit,food,Groceries,12.00
+7/19/2019,2019-07,Wal-Mart,debit,food,Groceries,40.00
+8/10/2019,2019-08,Wal-Mart,debit,food,Groceries,30.00
+9/18/2019,2019-09,Wal-Mart,debit,food,Groceries,17.00
+10/01/2019,2019-10,Wal-Mart,debit,food,Groceries,24.00
+11/19/2019,2019-11,Wal-Mart,debit,food,Groceries,45.00
+12/20/2019,2019-12,Wal-Mart,debit,food,Groceries,80.00
+1/06/2019,2019-01,Wal-Mart,debit,food,Groceries,15.00
+1/12/2019,2019-01,Bank,cash,income,Rent,1450.00
+3/12/2018,2019-03,Bank,cash,income,Rent,1470.00
+4/12/2018,2019-04,Bank,cash,income,Rent,1500.00
+5/12/2018,2019-05,Bank,cash,income,Rent,1500.00
+6/06/2018,2019-06,Bank,cash,income,Rent,1500.00
+7/12/2018,2019-07,Bank,cash,income,Rent,1500.00
+8/12/2018,2019-08,Bank,cash,income,Rent,1500.00
+9/12/2018,2019-09,Bank,cash,income,Rent,1500.00
+10/12/2018,2019-10,Bank,cash,income,Rent,1550.00
+11/12/2018,2019-11,Bank,cash,income,Rent,1550.00
+12/12/2018,2019-12,Bank,cash,income,Rent,1500.00
+2/12/2019,2019-02,Bank,cash,income,Rent,1500.00
+3/12/2019,2019-03,Bank,cash,income,Rent,1515.00
+4/12/2019,2019-04,Bank,cash,income,Rent,1520.00
+5/12/2019,2019-05,Bank,cash,income,Rent,1530.00
+6/12/2019,2019-06,Bank,cash,income,Rent,1535.00
+7/12/2019,2019-07,Bank,cash,income,Rent,1540.00
+8/12/2019,2019-08,Bank,cash,income,Rent,1502.00
+9/12/2019,2019-09,Bank,cash,income,Rent,1503.00
+10/12/2019,2019-10,Bank,cash,income,Rent,1475.00
+11/12/2019,2019-11,Bank,cash,income,Rent,1540.00
+12/12/2019,2019-12,Bank,cash,income,Rent,1537.00
