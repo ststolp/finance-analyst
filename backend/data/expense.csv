@@ -141,17 +141,13 @@ date,month,payment_to,method,category,description,amount
 11/19/2019,2019-11,Wal-Mart,debit,food,Groceries,45.00
 12/20/2019,2019-12,Wal-Mart,debit,food,Groceries,80.00
 1/06/2019,2019-01,Wal-Mart,debit,food,Groceries,15.00
-1/12/2019,2019-01,Bank,cash,income,Rent,1450.00
-3/12/2018,2019-03,Bank,cash,income,Rent,1470.00
-4/12/2018,2019-04,Bank,cash,income,Rent,1500.00
-5/12/2018,2019-05,Bank,cash,income,Rent,1500.00
-6/06/2018,2019-06,Bank,cash,income,Rent,1500.00
-7/12/2018,2019-07,Bank,cash,income,Rent,1500.00
-8/12/2018,2019-08,Bank,cash,income,Rent,1500.00
-9/12/2018,2019-09,Bank,cash,income,Rent,1500.00
-10/12/2018,2019-10,Bank,cash,income,Rent,1550.00
-11/12/2018,2019-11,Bank,cash,income,Rent,1550.00
-12/12/2018,2019-12,Bank,cash,income,Rent,1500.00
+7/12/2018,2018-07,Bank,cash,income,Rent,1500.00
+8/12/2018,2018-08,Bank,cash,income,Rent,1500.00
+9/12/2018,2018-09,Bank,cash,income,Rent,1500.00
+10/12/2018,2018-10,Bank,cash,income,Rent,1550.00
+11/12/2018,2018-11,Bank,cash,income,Rent,1550.00
+12/12/2018,2018-12,Bank,cash,income,Rent,1500.00
+1/14/2019,2019-01,Bank,cash,income,Rent,1480.00
 2/12/2019,2019-02,Bank,cash,income,Rent,1500.00
 3/12/2019,2019-03,Bank,cash,income,Rent,1515.00
 4/12/2019,2019-04,Bank,cash,income,Rent,1520.00
@@ -163,3 +159,4 @@ date,month,payment_to,method,category,description,amount
 10/12/2019,2019-10,Bank,cash,income,Rent,1475.00
 11/12/2019,2019-11,Bank,cash,income,Rent,1540.00
 12/12/2019,2019-12,Bank,cash,income,Rent,1537.00
+12/13/2019,2019-12,Wal-Mart,debit,food,Candy Bar,3.12
